@@ -36,32 +36,12 @@ workflow RNA_preprocessing_pipeline {
       seqFile=fastq2
   }
 
-  call fastp_task.fastp_workflow as fastp {
-    input:
-      read1 = fastq1,
-      read2 = fastq2,
-      outputPathR1 = "./~{sample_id}_1.fq.gz",
-      outputPathR2 = "./~{sample_id}_2.fq.gz",
-      htmlPath = "./~{sample_id}_fastp.html",
-      jsonPath = "./~{sample_id}_fastp.json"
-    }
-
-  call fastqc_task.fastqc as cleaned_fastqc1 {
-    input:
-      seqFile=fastp.fastq1_clipped
-  }
-
-  call fastqc_task.fastqc as cleaned_fastqc2 {
-    input:
-      seqFile=fastp.fastq2_clipped
-  }
-
-
+  
   call star_task.star_workflow as star {
     input:
       prefix=sample_id,
-      fastq1=fastp.fastq1_clipped,
-      fastq2=fastp.fastq2_clipped,
+      fastq1=fastp.fastq1,
+      fastq2=fastp.fastq2,
       star_index=star_index
   }
 
@@ -86,13 +66,6 @@ workflow RNA_preprocessing_pipeline {
     File raw_reportZip1 = raw_fastqc1.reportZip
     File raw_htmlReport2 = raw_fastqc2.htmlReport
     File raw_reportZip2 = raw_fastqc2.reportZip
-
-    #fastp
-    File fastq1_clipped = fastp.fastq1_clipped 
-    File fastq2_clipped = fastp.fastq2_clipped
-    File raport_json = fastp.raport_json
-    File raport_html = fastp.raport_html
-
     #fastqc cleaned data
     File cleaned_htmlReport1 = cleaned_fastqc1.htmlReport
     File cleaned_reportZip1 = cleaned_fastqc1.reportZip
