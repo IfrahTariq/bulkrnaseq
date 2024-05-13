@@ -40,8 +40,8 @@ workflow RNA_preprocessing_pipeline {
   call star_task.star_workflow as star {
     input:
       prefix=sample_id,
-      fastq1=fastp.fastq1,
-      fastq2=fastp.fastq2,
+      fastq1=fastq1,
+      fastq2=fastq2,
       star_index=star_index
   }
 
