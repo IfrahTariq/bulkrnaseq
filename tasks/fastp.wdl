@@ -40,10 +40,10 @@ task Fastp {
         Boolean performLengthFiltering = true
         Boolean? performPolyGTrimming
         
-        Int threads = 4
-        String memory = "100GiB"
+        Int threads = 32
+        String memory = "32GiB"
         Int timeMinutes = 1 + ceil(size([read1, read2], "G")  * 6.0 / threads)
-        String dockerImage = "quay.io/biocontainers/fastp:0.23.2--h5f740d0_3"
+        String dockerImage = "quay.io/biocontainers/fastp:0.23.4--hadf994f_3"
 
         Int? noneInt
     }
