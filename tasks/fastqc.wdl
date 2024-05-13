@@ -143,7 +143,7 @@ task fastqc {
 
 task GetConfiguration {
     input {
-        String memory = "2G" # Needs more than 1 to pull the docker image.
+        String memory = "16G" # Needs more than 1 to pull the docker image.
         Int timeMinutes = 1
         String dockerImage = "quay.io/biocontainers/fastqc:0.11.7--4"
     }
