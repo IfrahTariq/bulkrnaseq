@@ -66,11 +66,6 @@ workflow RNA_preprocessing_pipeline {
     File raw_reportZip1 = raw_fastqc1.reportZip
     File raw_htmlReport2 = raw_fastqc2.htmlReport
     File raw_reportZip2 = raw_fastqc2.reportZip
-    #fastqc cleaned data
-    File cleaned_htmlReport1 = cleaned_fastqc1.htmlReport
-    File cleaned_reportZip1 = cleaned_fastqc1.reportZip
-    File cleaned_htmlReport2 = cleaned_fastqc2.htmlReport
-    File cleaned_reportZip2 = cleaned_fastqc2.reportZip
 
     #star
     File bam_file=star.bam_file
